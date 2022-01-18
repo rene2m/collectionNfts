@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.9;
+pragma solidity >=0.7.0 <0.9.0;
 
-import '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol';
-import '@openzeppelin/contracts/access/Ownable.sol';
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract FunkyCrocs is ERC721Enumerable, Ownable {  
+contract Bohemian is ERC721Enumerable, Ownable {  
     using Address for address;
     
     // Starting and stopping sale, presale and whitelist
@@ -25,7 +25,7 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
     uint256 public constant MAX_MINT_PER_TX = 20;
 
     // The base link that leads to the image / video of the token
-    string public baseTokenURI = "https://api.funkycrocs.io/";
+    string public baseTokenURI = "http://167.172.136.241/";
 
     // Team addresses for withdrawals
     address public a1;
@@ -35,7 +35,7 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
     // List of addresses that have a number of reserved tokens for whitelist
     mapping (address => uint256) public whitelistReserved;
 
-    constructor () ERC721 ("Funky Crocs", "FNK") {
+    constructor () ERC721 ("Bohemian", "FNK") {
         price = initial_price;
     }
 

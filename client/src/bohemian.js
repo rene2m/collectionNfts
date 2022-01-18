@@ -76,7 +76,7 @@ async function getRevertReason(txHash) {
 }
 
 const getContract = async (web3) => {
-  const response = await fetch("./contracts/FunkyCrocs.json");
+  const response = await fetch("./contracts/bohemian.json");
   const data = await response.json();
 
   const netId = await web3.eth.net.getId();
@@ -97,7 +97,7 @@ async function loadAccount() {
   balance = await contract.methods.balanceOf(accounts[0]).call()
   document.getElementById("web3_message").textContent="Connected"
   document.getElementById("connect_button").style.display = "none"
-  document.getElementById("nft_balance").textContent="You have " + balance + " Crocs"
+  document.getElementById("nft_balance").textContent="You have " + balance + " Bohemians"
 }
 
 async function loadDapp() {
