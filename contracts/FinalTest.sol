@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.9;
+pragma solidity >=0.7.0 <0.9.0;
 
-import '@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol';
-import '@openzeppelin/contracts/access/Ownable.sol';
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract FunkyCrocs is ERC721Enumerable, Ownable {  
+contract FinalTest is ERC721Enumerable, Ownable {    //creamos una clase llamada Bohemian y herdamos de ERC721Enumerable y de Ownable todos sus metodos 
     using Address for address;
     
     // Starting and stopping sale, presale and whitelist
@@ -25,7 +25,9 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
     uint256 public constant MAX_MINT_PER_TX = 20;
 
     // The base link that leads to the image / video of the token
-    string public baseTokenURI = "https://api.funkycrocs.io/";
+     string public baseTokenURI;
+    string public baseExtension = ".json";
+    // string public baseTokenURI = "https://bohemian.mypinata.cloud/ipfs/QmV3XKt2dCnXxF2awyD12GyC117tfLgyAznDrMz2GG87FY/";
 
     // Team addresses for withdrawals
     address public a1;
@@ -35,7 +37,8 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
     // List of addresses that have a number of reserved tokens for whitelist
     mapping (address => uint256) public whitelistReserved;
 
-    constructor () ERC721 ("Funky Crocs", "FNK") {
+    constructor () ERC721 ("FinalTest", "FNT") {
+        setBaseURI("https://bohemian.mypinata.cloud/ipfs/QmV3XKt2dCnXxF2awyD12GyC117tfLgyAznDrMz2GG87FY/");
         price = initial_price;
     }
 
@@ -128,7 +131,7 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
 
     // Set new baseURI
     function setBaseURI(string memory baseURI) public onlyOwner {
-        baseTokenURI = baseURI;
+       baseTokenURI  = baseURI;
     }
 
     // Set a different price in case ETH changes drastically
@@ -144,6 +147,7 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
     }
 
     // Withdraw funds from contract for the team
+ ///esta funcion se encarga de los pagos a los diferentes componenetas  del equipo
     function withdrawTeam(uint256 amount) public payable onlyOwner {
         uint256 percent = amount / 100;
         require(payable(a1).send(percent * 40));
@@ -151,3 +155,4 @@ contract FunkyCrocs is ERC721Enumerable, Ownable {
         require(payable(a3).send(percent * 30));
     }
 }
+

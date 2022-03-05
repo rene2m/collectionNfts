@@ -1,4 +1,5 @@
-const NETWORK_ID = 4
+// const NETWORK_ID = 4
+const NETWORK_ID = 80001
 var NFT_PRICE = null
 var PRESALE_PRICE = null
 var MAX_SUPPLY = null
@@ -76,7 +77,7 @@ async function getRevertReason(txHash) {
 }
 
 const getContract = async (web3) => {
-  const response = await fetch("./contracts/bohemian.json");
+  const response = await fetch("./contracts/Ultimate.json");
   const data = await response.json();
 
   const netId = await web3.eth.net.getId();
@@ -167,7 +168,7 @@ const mint = async () => {
 const mintPresale = async () => {
   let mint_amount = document.getElementById("mint_amount").value
   const result = await contract.methods.mintPresale(mint_amount)
-    .send({ from: accounts[0], gas: 0, value: PRESALE_PRICE * mint_amount })
+    .send({ from: accounts[0], gas: 0.45, value: PRESALE_PRICE * mint_amount })
     .on('transactionHash', function(hash){
       document.getElementById("web3_message").textContent="Minting...";
     })
