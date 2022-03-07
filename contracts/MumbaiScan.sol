@@ -5,7 +5,7 @@ pragma solidity >=0.7.0 <0.9.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract BohemianUltimateTest is ERC721Enumerable, Ownable {
+contract MumbaiScan is ERC721Enumerable, Ownable {
   using Strings for uint256;
 
       // Starting and stopping sale, presale and whitelis
@@ -42,7 +42,7 @@ contract BohemianUltimateTest is ERC721Enumerable, Ownable {
      string public baseExtension = ".json";
 
   constructor(
-  ) ERC721("BohemianUltimateTest", "BULT") {
+  ) ERC721("MumbaiScan", "MBS") {
      setBaseURI("https://bohemian.mypinata.cloud/ipfs/QmSMDJA6ATqPbvFnmoWjoqDNB2WYqNWjVEdDHA6a44xiVR/");
      setNotRevealedURI("https://bohemian.mypinata.cloud/ipfs/QmeikWRLfqPMeV9oZVagyoVS3CgLXaH1rBNyepeUnmfzdA");
       mint(msg.sender, 10);

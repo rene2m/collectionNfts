@@ -1,4 +1,3 @@
-// const NETWORK_ID = 4
 const NETWORK_ID = 80001
 var NFT_PRICE = null
 var PRESALE_PRICE = null
@@ -77,7 +76,7 @@ async function getRevertReason(txHash) {
 }
 
 const getContract = async (web3) => {
-  const response = await fetch("./contracts/Ultimate.json");
+  const response = await fetch("./contracts/MumbaiUltimate.json");
   const data = await response.json();
 
   const netId = await web3.eth.net.getId();
@@ -236,7 +235,7 @@ const setPresaleActive = async () => {
       getRevertReason(revertReason.receipt.transactionHash);
     });
 }
-
+//activar 
 const setSaleActive = async () => {
   const result = await contract.methods.setSaleActive(true)
     .send({ from: accounts[0], gas: 0, value: 0 })
@@ -249,9 +248,25 @@ const setSaleActive = async () => {
       getRevertReason(revertReason.receipt.transactionHash);
     });
 }
+//activar el revelado de las imagenes
+const activeReveal = async () => {
+  const result = await contract.methods.reveal()
+    .send({ from: accounts[0], gas: 0, value: 0 })
+    .on('transactionHash', function(hash){
+      document.getElementById("web3_message").textContent="Proces...";
+    })
+    .on('receipt', function(receipt){
+      document.getElementById("web3_message").textContent="Success!";    })
+    .catch((revertReason) => {
+      getRevertReason(revertReason.receipt.transactionHash);
+    });
+}
+
+
+
 
 const setBaseURI = async () => {
-  const result = await contract.methods.setBaseURI("http://")
+  const result = await contract.methods.setBaseURI("https://bohemian.mypinata.cloud/ipfs/QmV3XKt2dCnXxF2awyD12GyC117tfLgyAznDrMz2GG87FY/")
     .send({ from: accounts[0], gas: 0, value: 0 })
     .on('transactionHash', function(hash){
       document.getElementById("web3_message").textContent="Minting...";

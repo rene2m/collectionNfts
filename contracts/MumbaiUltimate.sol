@@ -5,7 +5,7 @@ pragma solidity >=0.7.0 <0.9.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract BohemianUltim is ERC721Enumerable, Ownable {
+contract MumbaiUltimate is ERC721Enumerable, Ownable {
   using Strings for uint256;
 
       // Starting and stopping sale, presale and whitelis
@@ -42,10 +42,10 @@ contract BohemianUltim is ERC721Enumerable, Ownable {
      string public baseExtension = ".json";
 
   constructor(
-  ) ERC721("BohemianUltim", "BUL") {
+  ) ERC721("MumbaiUltimate", "MU") {
      setBaseURI("https://bohemian.mypinata.cloud/ipfs/QmSMDJA6ATqPbvFnmoWjoqDNB2WYqNWjVEdDHA6a44xiVR/");
      setNotRevealedURI("https://bohemian.mypinata.cloud/ipfs/QmeikWRLfqPMeV9oZVagyoVS3CgLXaH1rBNyepeUnmfzdA");
-      mint(msg.sender, 10);
+      mintToken(10);
       price = initial_price;
   }
   function _baseURI() internal view virtual override returns (string memory) {
@@ -100,16 +100,6 @@ contract BohemianUltim is ERC721Enumerable, Ownable {
             _safeMint( msg.sender, supply + i );
         }
     }
-  function mint(address _to, uint256 _amount) public payable onlyOwner  {
-    uint256 supply = totalSupply();
-  require( saleActive,                                "Sale isn't active" );
-  require( _amount > 0 && _amount <= MAX_MINT_PER_TX, "Can only mint between 1 and 4 tokens at once" );
-  require( supply + _amount <= MAX_SUPPLY,            "Can't mint more than max supply" );
-    for (uint256 i = 1; i < _amount; i++) {
-      _safeMint(_to, supply + i);
-    }
-  }
-
        // Admin minting function to reserve tokens for the team, collabs, customs and giveaways
       function mintReserved(uint256 _amount) public onlyOwner {
         // Limited to a publicly set amount
